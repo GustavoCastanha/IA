@@ -1,58 +1,54 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sistema de Câmeras</title>
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
-    <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sistema de Câmeras</title>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div class="login-container" id="login">
-        <div class="login-box">
-            <h2>Login</h2>
-            <input type="text" id="username" placeholder="Usuário">
-            <input type="password" id="password" placeholder="Senha">
-            <button onclick="login()">Entrar</button>
-        </div>
+  <div class="login-container" id="login">
+    <div class="login-box">
+      <h2>Login</h2>
+      <input type="text" id="username" placeholder="Usuário">
+      <input type="password" id="password" placeholder="Senha">
+      <button onclick="login()">Entrar</button>
     </div>
+  </div>
 
-    <div class="container" id="app" style="display:none">
-        <div class="header">
-            <div class="logo-box">LOGO</div>
-            <div class="header-buttons">
-                <button class="header-button" onclick="mostrarMultiplasCameras()">
-                    <i class="fa fa-th-large"></i> MÚLTIPLAS CÂMERAS
-                </button>
-                <button class="header-button" onclick="mostrarErros()">
-                    <i class="fa fa-exclamation-triangle"></i> ERRO
-                </button>
-                <button class="header-button">
-                    <i class="fa fa-file-alt"></i> RELATÓRIO
-                </button>
-                <button class="header-button">
-                    <i class="fa fa-download"></i> EXPORTAR RELATÓRIO
-                </button>
-            </div>
-            <div class="close-btn" onclick="voltarTelaInicial()">
-                <span style="color:red; font-weight:bold; font-size: 20px;">Início</span>
-            </div>
-        </div>
-        <div class="sidebar">
-            <button data-camera="1" onclick="mostrarCameraIndividual(1, this)">CÂMERA 1</button>
-            <button data-camera="2" onclick="mostrarCameraIndividual(2, this)">CÂMERA 2</button>
-            <button data-camera="3" onclick="mostrarCameraIndividual(3, this)">CÂMERA 3</button>
-            <button data-camera="4" onclick="mostrarCameraIndividual(4, this)">CÂMERA 4</button>
-            <button data-camera="5" onclick="mostrarCameraIndividual(5, this)">CÂMERA 5</button>
-            <button data-camera="6" onclick="mostrarCameraIndividual(6, this)">CÂMERA 6</button>
-            <button data-camera="7" onclick="mostrarCameraIndividual(7, this)">CÂMERA 7</button>
-            <button data-camera="8" onclick="mostrarCameraIndividual(8, this)">CÂMERA 8</button>
-        </div>
-        <div class="main" id="main-content">
-            </div>
+  <div class="container" id="app" style="display:none">
+    <div class="header">
+      <div class="logo-box">LOGO</div>
+      <div class="header-buttons">
+        <button class="header-button" onclick="mostrarErros()">
+          <i class="fa fa-exclamation-triangle"></i> ERRO
+        </button>
+        <button class="header-button">
+          <i class="fa fa-file-alt"></i> RELATÓRIO
+        </button>
+        <button class="header-button">
+          <i class="fa fa-download"></i> EXPORTAR RELATÓRIO
+        </button>
+      </div>
+      <div class="close-btn" onclick="voltarTelaInicial()">
+        <span style="color:red; font-weight:bold; font-size: 20px;">Início</span>
+      </div>
     </div>
+    <div class="sidebar">
+      <button onclick="mostrarCamera(1, this)">CÂMERA 1</button>
+      <button onclick="mostrarCamera(2, this)">CÂMERA 2</button>
+      <button onclick="mostrarCamera(3, this)">CÂMERA 3</button>
+      <button onclick="mostrarCamera(4, this)">CÂMERA 4</button>
+      <button onclick="mostrarCamera(5, this)">CÂMERA 5</button>
+      <button onclick="mostrarCamera(6, this)">CÂMERA 6</button>
+      <button onclick="mostrarCamera(7, this)">CÂMERA 7</button>
+      <button onclick="mostrarCamera(8, this)">CÂMERA 8</button>
+    </div>
+    <div class="main" id="main-content"></div>
+  </div>
 
-    <script src="script.js"></script>
+  <script src="script.js"></script>
 </body>
 </html>
