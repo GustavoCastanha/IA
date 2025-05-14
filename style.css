@@ -158,13 +158,12 @@ body {
 .main {
     background: #eeeeee;
     padding: 10px;
-    display: grid;
+    display: grid; /* Garante que o main seja um grid */
     grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
     grid-template-rows: repeat(auto-fit, minmax(150px, 1fr));
     gap: 5px;
     opacity: 0;
     transition: opacity 0.5s ease-in-out;
-    overflow: hidden;
 }
 
 .camera-view {
