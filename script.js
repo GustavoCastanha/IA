@@ -4,42 +4,41 @@ function login() {
     if (user === 'admin' && pass === '1234') {
         document.getElementById('login').style.display = 'none';
         document.getElementById('app').style.display = 'grid';
-        carregarMiniaturas(); // Carrega as miniaturas após o login
+        mostrarMultiplasCameras(); // Carrega a visualização múltipla após o login
     } else {
         alert('Usuário ou senha inválidos.');
     }
 }
 
-function carregarMiniaturas() {
-    const thumbnailGrid = document.getElementById('thumbnailGrid');
-    thumbnailGrid.innerHTML = ''; // Limpa qualquer miniatura anterior
+function mostrarMultiplasCameras() {
+    const main = document.getElementById('main-content');
+    main.innerHTML = ''; // Limpa qualquer conteúdo anterior
+    main.style.display = 'grid'; // Garante que o main content seja exibido como grid
+    main.style.opacity = 0;
 
-    for (let i = 1; i <= 8; i++) {
-        const thumbnailItem = document.createElement('div');
-        thumbnailItem.classList.add('thumbnail-item');
-        thumbnailItem.onclick = () => mostrarCamera(i, null); // Ao clicar na miniatura, mostra a câmera em tela cheia
+    for (let i = 1; i <= 9; i++) { // Assumindo até 9 câmeras na visualização
+        const cameraView = document.createElement('div');
+        cameraView.classList.add('camera-view');
 
+        // Aqui você pode adicionar um elemento <img> para imagens estáticas
+        // ou um elemento <video> para vídeos das câmeras
         const img = document.createElement('img');
-        img.src = `thumb${i}.jpg`; // Certifique-se de ter imagens de miniatura (thumb1.jpg, thumb2.jpg, etc.)
+        img.src = `camera${i}.jpg`; // Substitua pelos seus caminhos de imagem
         img.alt = `Câmera ${i}`;
 
-        const label = document.createElement('div');
-        label.classList.add('thumbnail-label');
-        label.textContent = `CÂMERA ${i}`;
-
-        thumbnailItem.appendChild(img);
-        thumbnailItem.appendChild(label);
-        thumbnailGrid.appendChild(thumbnailItem);
+        cameraView.appendChild(img);
+        main.appendChild(cameraView);
     }
+
+    setTimeout(() => {
+        main.style.opacity = 1;
+    }, 300);
 }
 
-function mostrarCamera(camNumber, btn) {
+function mostrarCameraIndividual(camNumber, btn) {
     const main = document.getElementById('main-content');
     main.style.opacity = 0;
-    main.style.display = 'flex'; // Garante que o main content seja visível
-
-    const thumbnailGrid = document.getElementById('thumbnailGrid');
-    thumbnailGrid.style.display = 'none'; // Esconde a grade de miniaturas
+    main.style.display = 'flex'; // Para exibir uma única câmera em tela cheia
 
     document.querySelectorAll('.sidebar button').forEach(b => b.classList.remove('active'));
     if (btn) btn.classList.add('active');
@@ -56,10 +55,7 @@ function mostrarCamera(camNumber, btn) {
 function mostrarErros() {
     const main = document.getElementById('main-content');
     main.style.opacity = 0;
-    main.style.display = 'flex'; // Garante que o main content seja visível
-
-    const thumbnailGrid = document.getElementById('thumbnailGrid');
-    thumbnailGrid.style.display = 'none'; // Esconde a grade de miniaturas
+    main.style.display = 'flex';
 
     setTimeout(() => {
         main.innerHTML = `
@@ -81,10 +77,7 @@ function voltarTelaInicial() {
     const main = document.getElementById('main-content');
     main.style.opacity = 0;
     setTimeout(() => {
-        main.innerHTML = '';
-        main.style.display = 'none'; // Esconde o main content
-        const thumbnailGrid = document.getElementById('thumbnailGrid');
-        thumbnailGrid.style.display = 'grid'; // Mostra a grade de miniaturas
+        mostrarMultiplasCameras(); // Volta para a visualização múltipla
         document.querySelectorAll('.sidebar button').forEach(b => b.classList.remove('active'));
     }, 500);
 }
