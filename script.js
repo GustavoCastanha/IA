@@ -1,33 +1,56 @@
-function mostrarCamera(camNumber, btn) {
+function carregarMiniaturas() {
+  const main = document.getElementById('main-content');
+  main.innerHTML = ''; // Limpa qualquer conteúdo anterior
+  for (let i = 1; i <= 8; i++) {
+    const videoContainer = document.createElement('div');
+    videoContainer.classList.add('camera-thumbnail-container');
+    videoContainer.innerHTML = `<video width="100%" height="100%" muted autoplay loop onclick="mostrarCamera(${i}, this)">
+      <source src="cam${i}.mp4" type="video/mp4">
+      Seu navegador não suporta vídeo.
+    </video>`;
+    main.appendChild(videoContainer);
+  }
+  main.style.opacity = 1;
+}
+
+function mostrarCamera(camNumber, videoElement) {
   const main = document.getElementById('main-content');
   main.style.opacity = 0;
 
+  // Remove a classe 'active' de todos os botões da sidebar
   document.querySelectorAll('.sidebar button').forEach(b => b.classList.remove('active'));
-  if (btn) btn.classList.add('active');
 
   setTimeout(() => {
-    main.innerHTML = `<video id="camera-video" width="100%" height="100%" controls autoplay>
+    main.innerHTML = `<video id="full-camera-video" width="100%" height="100%" controls autoplay>
       <source src="cam${camNumber}.mp4" type="video/mp4">
       Seu navegador não suporta vídeo.
     </video>`;
     main.style.opacity = 1;
 
     // Adiciona um event listener para tornar o vídeo tela cheia ao clicar
-    const videoElement = document.getElementById('camera-video');
-    if (videoElement) {
-      videoElement.addEventListener('click', () => {
-        if (videoElement.requestFullscreen) {
-          videoElement.requestFullscreen();
-        } else if (videoElement.mozRequestFullScreen) { /* Firefox */
-          videoElement.mozRequestFullScreen();
-        } else if (videoElement.webkitRequestFullscreen) { /* Chrome, Safari & Opera */
-          videoElement.webkitRequestFullscreen();
-        } else if (videoElement.msRequestFullscreen) { /* IE/Edge */
-          videoElement.msRequestFullscreen();
+    const fullVideoElement = document.getElementById('full-camera-video');
+    if (fullVideoElement) {
+      fullVideoElement.addEventListener('click', () => {
+        if (fullVideoElement.requestFullscreen) {
+          fullVideoElement.requestFullscreen();
+        } else if (fullVideoElement.mozRequestFullScreen) { /* Firefox */
+          fullVideoElement.mozRequestFullScreen();
+        } else if (fullVideoElement.webkitRequestFullscreen) { /* Chrome, Safari & Opera */
+          fullVideoElement.webkitRequestFullscreen();
+        } else if (fullVideoElement.msRequestFullscreen) { /* IE/Edge */
+          fullVideoElement.msRequestFullscreen();
         }
       });
     }
   }, 300);
+}
+
+function selecionarCamera(camNumber, btn) {
+  // Remove a classe 'active' de todos os botões
+  document.querySelectorAll('.sidebar button').forEach(b => b.classList.remove('active'));
+  // Adiciona a classe 'active' ao botão clicado
+  btn.classList.add('active');
+  mostrarCamera(camNumber);
 }
 
 function mostrarErros() {
@@ -53,7 +76,7 @@ function voltarTelaInicial() {
   const main = document.getElementById('main-content');
   main.style.opacity = 0;
   setTimeout(() => {
-    main.innerHTML = '';
+    carregarMiniaturas(); // Recarrega as miniaturas ao voltar para a tela inicial
     document.querySelectorAll('.sidebar button').forEach(b => b.classList.remove('active'));
   }, 500);
 }

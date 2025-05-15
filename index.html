@@ -28,18 +28,23 @@
       </div>
     </div>
     <div class="sidebar">
-      <button onclick="mostrarCamera(1, this)">CÂMERA 1</button>
-      <button onclick="mostrarCamera(2, this)">CÂMERA 2</button>
-      <button onclick="mostrarCamera(3, this)">CÂMERA 3</button>
-      <button onclick="mostrarCamera(4, this)">CÂMERA 4</button>
-      <button onclick="mostrarCamera(5, this)">CÂMERA 5</button>
-      <button onclick="mostrarCamera(6, this)">CÂMERA 6</button>
-      <button onclick="mostrarCamera(7, this)">CÂMERA 7</button>
-      <button onclick="mostrarCamera(8, this)">CÂMERA 8</button>
+      <button onclick="selecionarCamera(1, this)">CÂMERA 1</button>
+      <button onclick="selecionarCamera(2, this)">CÂMERA 2</button>
+      <button onclick="selecionarCamera(3, this)">CÂMERA 3</button>
+      <button onclick="selecionarCamera(4, this)">CÂMERA 4</button>
+      <button onclick="selecionarCamera(5, this)">CÂMERA 5</button>
+      <button onclick="selecionarCamera(6, this)">CÂMERA 6</button>
+      <button onclick="selecionarCamera(7, this)">CÂMERA 7</button>
+      <button onclick="selecionarCamera(8, this)">CÂMERA 8</button>
     </div>
-    <div class="main" id="main-content"></div>
+    <div class="main" id="main-content">
+      </div>
   </div>
 
   <script src="script.js"></script>
+  <script>
+    // Carrega as miniaturas das câmeras ao carregar a página
+    document.addEventListener('DOMContentLoaded', carregarMiniaturas);
+  </script>
 </body>
 </html>
