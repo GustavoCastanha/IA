@@ -1,14 +1,3 @@
-function login() {
-  const user = document.getElementById('username').value;
-  const pass = document.getElementById('password').value;
-  if (user === 'admin' && pass === '1234') {
-    document.getElementById('login').style.display = 'none';
-    document.getElementById('app').style.display = 'grid';
-  } else {
-    alert('Usuário ou senha inválidos.');
-  }
-}
-
 function mostrarCamera(camNumber, btn) {
   const main = document.getElementById('main-content');
   main.style.opacity = 0;
