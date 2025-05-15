@@ -17,11 +17,27 @@ function mostrarCamera(camNumber, btn) {
   if (btn) btn.classList.add('active');
 
   setTimeout(() => {
-    main.innerHTML = `<video width="100%" height="100%" controls autoplay>
+    main.innerHTML = `<video id="camera-video" width="100%" height="100%" controls autoplay>
       <source src="cam${camNumber}.mp4" type="video/mp4">
       Seu navegador não suporta vídeo.
     </video>`;
     main.style.opacity = 1;
+
+    // Adiciona um event listener para tornar o vídeo tela cheia ao clicar
+    const videoElement = document.getElementById('camera-video');
+    if (videoElement) {
+      videoElement.addEventListener('click', () => {
+        if (videoElement.requestFullscreen) {
+          videoElement.requestFullscreen();
+        } else if (videoElement.mozRequestFullScreen) { /* Firefox */
+          videoElement.mozRequestFullScreen();
+        } else if (videoElement.webkitRequestFullscreen) { /* Chrome, Safari & Opera */
+          videoElement.webkitRequestFullscreen();
+        } else if (videoElement.msRequestFullscreen) { /* IE/Edge */
+          videoElement.msRequestFullscreen();
+        }
+      });
+    }
   }, 300);
 }
 
